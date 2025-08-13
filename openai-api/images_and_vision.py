@@ -7,10 +7,10 @@ load_dotenv()
 client = OpenAI()
 model = "gpt-5-nano-2025-08-07"
 
-# Generate images with Responses
+# # Generate images with Responses
 # response = client.responses.create(
 #     model=model,
-#     input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
+#     input="Generate an image of an iPad with a infinte universe within the screen",
 #     tools=[{"type": "image_generation"}],
 # )
 
@@ -23,7 +23,7 @@ model = "gpt-5-nano-2025-08-07"
 
 # if image_data:
 #     image_base64 = image_data[0]
-#     with open("cat_and_otter.png", "wb") as f:
+#     with open("data/images/ipad_universe.png", "wb") as f:
 #         f.write(base64.b64decode(image_base64))
 
 
@@ -45,6 +45,42 @@ model = "gpt-5-nano-2025-08-07"
 #             ]
 #         }
 #     ],
+# )
+
+# print(response.output_text)
+
+
+# Analyze the content of an image - Passing a base64 encoded image
+
+# Function to encode an image to base64
+# def encode_image(image_path):
+#     with open(image_path, "rb") as image_file:
+#         return base64.b64encode(image_file.read()).decode("utf-8")
+
+
+# Path to your image
+# image_path = "data/images/ipad_universe.png"
+
+# Getting the Base64 string
+# base64_image = encode_image(image_path)
+
+# response = client.responses.create(
+#     model=model,
+#     input=[
+#         {
+#             "role": "user",
+#             "content": [
+#                 {
+#                     "type": "input_text",
+#                     "text": "What is in this image?"
+#                 },
+#                 {
+#                     "type": "input_image",
+#                     "image_url": f"data:image/png;base64,{base64_image}",
+#                 }
+#             ]
+#         }
+#     ]
 # )
 
 # print(response.output_text)
