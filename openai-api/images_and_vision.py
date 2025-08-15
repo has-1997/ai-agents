@@ -84,3 +84,39 @@ model = "gpt-5-nano-2025-08-07"
 # )
 
 # print(response.output_text)
+
+
+# Analyze the content of an image - Passing a file ID
+
+# Function to create a file with the Files API
+def create_file(file_path):
+    with open(file_path, "rb") as file_content:
+        result = client.files.create(
+            file=file_content,
+            purpose="vision"
+        )
+        return result.id
+    
+# Getting the file ID
+file_id = create_file("data/images/ipad_universe.png")
+
+response = client.responses.create(
+    model=model,
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_text",
+                    "text": "What is in this image?"
+                },
+                {
+                    "type": "input_image",
+                    "file_id": file_id
+                }
+            ]
+        }
+    ]
+)
+
+print(response.output_text)
