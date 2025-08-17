@@ -58,3 +58,29 @@ model = "gpt-5-nano-2025-08-07"
 # math_reasoning = response.output_parsed
 
 # print(math_reasoning)
+
+# Structured data extraction - Extracting data from research papers using Structured Outputs
+# class ResearchPaperExtraction(BaseModel):
+#     title: str
+#     authors: list[str]
+#     abstract: str
+#     keywords: list[str]
+
+# response = client.responses.parse(
+#     model=model,
+#     input=[
+#         {
+#             "role": "system",
+#             "content": "You are an expert at structured data extraction. You will be given unstructured text from a research paper and should convert it into the given structure.",
+#         },
+#         {
+#             "role": "user",
+#             "content": "The research paper is about the impact of AI on the job market."
+#         }
+#     ],
+#     text_format=ResearchPaperExtraction
+# )
+
+# research_paper = response.output_parsed
+
+# print(research_paper)
